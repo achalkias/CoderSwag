@@ -2,22 +2,24 @@ package com.achalkias.coderswag.controller
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.achalkias.coderswag.Adapters.CategoryAdapter
+import android.support.v7.widget.LinearLayoutManager
+import com.achalkias.coderswag.Adapters.CategoryRecyclerAdapter
 import com.achalkias.coderswag.R
 import com.achalkias.coderswag.services.DataService
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var adapter: CategoryAdapter
+    lateinit var adapter: CategoryRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        adapter = CategoryAdapter(this,
+        adapter = CategoryRecyclerAdapter(this,
                 DataService.categories)
-
-        categoryListView.adapter = adapter
+        categoryRecyclerView.adapter = adapter
+        categoryRecyclerView.layoutManager = LinearLayoutManager(this)
+        categoryRecyclerView.setHasFixedSize(true)
     }
 }
